@@ -16,7 +16,9 @@ class LTC extends Base58Validation
     protected $base58PrefixToHexVersion = [
         'L' => '30',
         'M' => '32',
-        '3' => '05'
+        '3' => '05',
+        'Q' => '3A', // testnet - see https://bitcoin.stackexchange.com/questions/62781/litecoin-constants-and-prefixes?noredirect=1
+        '2' => 'C4', // testnet 
     ];
 
     public function validate($address)
