@@ -2,18 +2,18 @@
 
 namespace Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
 
+use CBOR\Decoder;
+use CBOR\OtherObject;
+use CBOR\StringStream;
+use CBOR\Tag;
 use Merkeleon\PhpCryptocurrencyAddressValidation\Base58Validation;
 use Merkeleon\PhpCryptocurrencyAddressValidation\Utils\Bech32Decoder;
 use Merkeleon\PhpCryptocurrencyAddressValidation\Utils\Bech32Exception;
-use Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
-use CBOR\Decoder;
-use CBOR\OtherObject;
-use CBOR\Tag;
-use CBOR\StringStream;
 
 class ADA extends Base58Validation
 {
-    public function isValidV1($address) {
+    public function isValidV1(string $address, array $options = []): bool
+    {
         try {
             $addressHex = self::base58ToHex($address);
 
@@ -46,13 +46,16 @@ class ADA extends Base58Validation
             return false;
         }
     }
-    public function validate($address) {
-        $valid = $this->isValidV1($address);
+
+    public function validate(string $address, array $options = []): bool
+    {
+        $valid = $this->isValidV1($address, $options);
         if (!$valid) {
             // maybe it's a bech32 address
             try {
-                $valid = is_array($decoded = Bech32Decoder::decodeRaw($address)) && 'addr' === $decoded[0];
-            } catch (Bech32Exception $exception) {}
+                $valid = is_array($decoded = Bech32Decoder::decodeRaw($address)) && $decoded[0] === 'addr';
+            } catch (Bech32Exception $exception) {
+            }
         }
 
         return $valid;

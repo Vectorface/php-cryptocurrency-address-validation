@@ -8,8 +8,6 @@
 
 namespace Merkeleon\PhpCryptocurrencyAddressValidation\Utils;
 
-
 class CashAddressException extends \Exception
 {
-
 }

@@ -12,19 +12,24 @@ class TBTC extends Base58Validation
     protected $base58PrefixToHexVersion = [
         'm' => '6F',
         'n' => '6F',
-        '2' => 'C4'
+        '2' => 'C4',
     ];
 
-    public function validate($address)
+    protected $network_version_map = [
+        '6F' => self::MAINNET,
+        'C4' => self::MAINNET,
+    ];
+
+    public function validate(string $address, array $options = []): bool
     {
-        $address = (string)$address;
         $valid = parent::validate($address);
 
         if (!$valid) {
             // maybe it's a bech32 address
             try {
-                $valid = is_array($decoded = Bech32Decoder::decodeRaw($address)) && 'tb' === $decoded[0];
-            } catch (Bech32Exception $exception) {}
+                $valid = is_array($decoded = Bech32Decoder::decodeRaw($address)) && $decoded[0] === 'tb';
+            } catch (Bech32Exception $exception) {
+            }
         }
 
         return $valid;

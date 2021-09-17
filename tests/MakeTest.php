@@ -1,21 +1,21 @@
 <?php
 
-
 namespace Tests;
-
 
 use Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
 
 class MakeTest extends TestCase
 {
     /** @dataProvider makeProvider */
-    public function testMake($iso, $class) {
+    public function testMake($iso, $class)
+    {
         $instance = Validation::make($iso);
 
         $this->assertInstanceOf($class, $instance);
     }
 
-    public function makeProvider() {
+    public function makeProvider()
+    {
         return [
             ['BCH', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\BCH'],
             ['BNB', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\BNB'],

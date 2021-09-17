@@ -9,11 +9,15 @@ class ZEC extends Base58Validation
     // more info at https://en.bitcoin.it/wiki/List_of_address_prefixes
     protected $base58PrefixToHexVersion = [
         't' => '1C',
-//        'z' => '16',
+        //        'z' => '16',
+    ];
+
+    protected $network_version_map = [
+        '1C' => self::MAINNET,
     ];
 
     protected $lengths = [
         't' => 52,
-        'z' => 140
+        'z' => 140,
     ];
 }

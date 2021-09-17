@@ -16,7 +16,7 @@ class Bech32Decoder
         -1, 29, -1, 24, 13, 25,  9,  8, 23, -1, 18, 22, 31, 27, 19, -1,
         1,  0,  3, 16, 11, 28, 12, 14,  6,  4,  2, -1, -1, -1, -1, -1,
         -1, 29, -1, 24, 13, 25,  9,  8, 23, -1, 18, 22, 31, 27, 19, -1,
-        1,  0,  3, 16, 11, 28, 12, 14,  6,  4,  2, -1, -1, -1, -1, -1
+        1,  0,  3, 16, 11, 28, 12, 14,  6,  4,  2, -1, -1, -1, -1, -1,
     ];
 
     /**
@@ -24,7 +24,7 @@ class Bech32Decoder
      * @param string $sBech - the bech32 encoded string
      * @return array - returns [$hrp, $dataChars]
      */
-    static public function decodeRaw($sBech)
+    public static function decodeRaw($sBech)
     {
         $length = \strlen($sBech);
         if ($length < 8) {

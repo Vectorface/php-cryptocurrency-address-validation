@@ -8,12 +8,13 @@ use Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
 
 class BNB extends Validation
 {
-    public function validate($address)
+    public function validate(string $address, array $options = []): bool
     {
         $valid = false;
         try {
-            $valid = is_array($decoded = Bech32Decoder::decodeRaw($address)) && 'bnb' === $decoded[0];
-        } catch (Bech32Exception $exception) {}
+            $valid = is_array($decoded = Bech32Decoder::decodeRaw($address)) && $decoded[0] === 'bnb';
+        } catch (Bech32Exception $exception) {
+        }
 
         return $valid;
     }

@@ -8,7 +8,7 @@ class XRP extends Base58Validation
 {
     protected static $base58Dictionary = 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz';
 
-    public function validate($address)
+    public function validate(string $address, array $options = []): bool
     {
         $address = (string)$address;
         $hexAddress = static::base58ToHex($address);
@@ -18,5 +18,4 @@ class XRP extends Base58Validation
         $check = substr($check, 0, 8);
         return $check == substr($hexAddress, strlen($hexAddress) - 8);
     }
-
 }

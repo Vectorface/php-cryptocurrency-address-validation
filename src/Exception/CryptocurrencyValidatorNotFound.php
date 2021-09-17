@@ -2,7 +2,6 @@
 
 namespace Merkeleon\PhpCryptocurrencyAddressValidation\Exception;
 
-
 class CryptocurrencyValidatorNotFound extends \Exception
 {
     public function __construct($iso)

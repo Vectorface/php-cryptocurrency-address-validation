@@ -16,73 +16,64 @@ final class Sha3
             [0x00000000, 0x0000008a], [0x00000000, 0x00000088], [0x00000000, 0x80008009], [0x00000000, 0x8000000a],
             [0x00000000, 0x8000808b], [0x80000000, 0x0000008b], [0x80000000, 0x00008089], [0x80000000, 0x00008003],
             [0x80000000, 0x00008002], [0x80000000, 0x00000080], [0x00000000, 0x0000800a], [0x80000000, 0x8000000a],
-            [0x80000000, 0x80008081], [0x80000000, 0x00008080], [0x00000000, 0x80000001], [0x80000000, 0x80008008]
+            [0x80000000, 0x80008081], [0x80000000, 0x00008080], [0x00000000, 0x80000001], [0x80000000, 0x80008008],
         ];
-        $bc           = [];
-        for ($round = 0; $round < $rounds; $round++)
-        {
+        $bc = [];
+        for ($round = 0; $round < $rounds; $round++) {
             // Theta
-            for ($i = 0; $i < 5; $i++)
-            {
+            for ($i = 0; $i < 5; $i++) {
                 $bc[$i] = [
                     $st[$i][0] ^ $st[$i + 5][0] ^ $st[$i + 10][0] ^ $st[$i + 15][0] ^ $st[$i + 20][0],
-                    $st[$i][1] ^ $st[$i + 5][1] ^ $st[$i + 10][1] ^ $st[$i + 15][1] ^ $st[$i + 20][1]
+                    $st[$i][1] ^ $st[$i + 5][1] ^ $st[$i + 10][1] ^ $st[$i + 15][1] ^ $st[$i + 20][1],
                 ];
             }
-            for ($i = 0; $i < 5; $i++)
-            {
+            for ($i = 0; $i < 5; $i++) {
                 $t = [
                     $bc[($i + 4) % 5][0] ^ (($bc[($i + 1) % 5][0] << 1) | ($bc[($i + 1) % 5][1] >> 31)) & (0xFFFFFFFF),
-                    $bc[($i + 4) % 5][1] ^ (($bc[($i + 1) % 5][1] << 1) | ($bc[($i + 1) % 5][0] >> 31)) & (0xFFFFFFFF)
+                    $bc[($i + 4) % 5][1] ^ (($bc[($i + 1) % 5][1] << 1) | ($bc[($i + 1) % 5][0] >> 31)) & (0xFFFFFFFF),
                 ];
-                for ($j = 0; $j < 25; $j += 5)
-                {
+                for ($j = 0; $j < 25; $j += 5) {
                     $st[$j + $i] = [
                         $st[$j + $i][0] ^ $t[0],
-                        $st[$j + $i][1] ^ $t[1]
+                        $st[$j + $i][1] ^ $t[1],
                     ];
                 }
             }
             // Rho Pi
             $t = $st[1];
-            for ($i = 0; $i < 24; $i++)
-            {
-                $j     = self::$keccakf_piln[$i];
+            for ($i = 0; $i < 24; $i++) {
+                $j = self::$keccakf_piln[$i];
                 $bc[0] = $st[$j];
-                $n     = self::$keccakf_rotc[$i];
-                $hi    = $t[0];
-                $lo    = $t[1];
-                if ($n >= 32)
-                {
-                    $n  -= 32;
+                $n = self::$keccakf_rotc[$i];
+                $hi = $t[0];
+                $lo = $t[1];
+                if ($n >= 32) {
+                    $n -= 32;
                     $hi = $t[1];
                     $lo = $t[0];
                 }
                 $st[$j] = [
                     (($hi << $n) | ($lo >> (32 - $n))) & (0xFFFFFFFF),
-                    (($lo << $n) | ($hi >> (32 - $n))) & (0xFFFFFFFF)
+                    (($lo << $n) | ($hi >> (32 - $n))) & (0xFFFFFFFF),
                 ];
-                $t      = $bc[0];
+                $t = $bc[0];
             }
             //  Chi
-            for ($j = 0; $j < 25; $j += 5)
-            {
-                for ($i = 0; $i < 5; $i++)
-                {
+            for ($j = 0; $j < 25; $j += 5) {
+                for ($i = 0; $i < 5; $i++) {
                     $bc[$i] = $st[$j + $i];
                 }
-                for ($i = 0; $i < 5; $i++)
-                {
+                for ($i = 0; $i < 5; $i++) {
                     $st[$j + $i] = [
                         $st[$j + $i][0] ^ ~$bc[($i + 1) % 5][0] & $bc[($i + 2) % 5][0],
-                        $st[$j + $i][1] ^ ~$bc[($i + 1) % 5][1] & $bc[($i + 2) % 5][1]
+                        $st[$j + $i][1] ^ ~$bc[($i + 1) % 5][1] & $bc[($i + 2) % 5][1],
                     ];
                 }
             }
             // Iota
             $st[0] = [
                 $st[0][0] ^ $keccakf_rndc[$round][0],
-                $st[0][1] ^ $keccakf_rndc[$round][1]
+                $st[0][1] ^ $keccakf_rndc[$round][1],
             ];
         }
     }
@@ -90,42 +81,37 @@ final class Sha3
     private static function keccak64($in_raw, $capacity, $outputlength, $suffix, $raw_output)
     {
         $capacity /= 8;
-        $inlen    = self::ourStrlen($in_raw);
-        $rsiz     = 200 - 2 * $capacity;
-        $rsizw    = $rsiz / 8;
-        $st       = [];
-        for ($i = 0; $i < 25; $i++)
-        {
+        $inlen = self::ourStrlen($in_raw);
+        $rsiz = 200 - 2 * $capacity;
+        $rsizw = $rsiz / 8;
+        $st = [];
+        for ($i = 0; $i < 25; $i++) {
             $st[] = [0, 0];
         }
-        for ($in_t = 0; $inlen >= $rsiz; $inlen -= $rsiz, $in_t += $rsiz)
-        {
-            for ($i = 0; $i < $rsizw; $i++)
-            {
-                $t      = unpack('V*', self::ourSubstr($in_raw, $i * 8 + $in_t, 8));
+        for ($in_t = 0; $inlen >= $rsiz; $inlen -= $rsiz, $in_t += $rsiz) {
+            for ($i = 0; $i < $rsizw; $i++) {
+                $t = unpack('V*', self::ourSubstr($in_raw, $i * 8 + $in_t, 8));
                 $st[$i] = [
                     $st[$i][0] ^ $t[2],
-                    $st[$i][1] ^ $t[1]
+                    $st[$i][1] ^ $t[1],
                 ];
             }
             self::keccakf64($st, self::KECCAK_ROUNDS);
         }
-        $temp            = self::ourSubstr($in_raw, $in_t, $inlen);
-        $temp            = str_pad($temp, $rsiz, "\x0", STR_PAD_RIGHT);
-        $temp[$inlen]    = chr($suffix);
+        $temp = self::ourSubstr($in_raw, $in_t, $inlen);
+        $temp = str_pad($temp, $rsiz, "\x0", STR_PAD_RIGHT);
+        $temp[$inlen] = chr($suffix);
         $temp[$rsiz - 1] = chr($temp[$rsiz - 1] | 0x80);
-        for ($i = 0; $i < $rsizw; $i++)
-        {
-            $t      = unpack('V*', self::ourSubstr($temp, $i * 8, 8));
+        for ($i = 0; $i < $rsizw; $i++) {
+            $t = unpack('V*', self::ourSubstr($temp, $i * 8, 8));
             $st[$i] = [
                 $st[$i][0] ^ $t[2],
-                $st[$i][1] ^ $t[1]
+                $st[$i][1] ^ $t[1],
             ];
         }
         self::keccakf64($st, self::KECCAK_ROUNDS);
         $out = '';
-        for ($i = 0; $i < 25; $i++)
-        {
+        for ($i = 0; $i < 25; $i++) {
             $out .= $t = pack('V*', $st[$i][1], $st[$i][0]);
         }
         $r = self::ourSubstr($out, 0, $outputlength / 8);
@@ -141,69 +127,61 @@ final class Sha3
             [0x0000, 0x0000, 0x0000, 0x008a], [0x0000, 0x0000, 0x0000, 0x0088], [0x0000, 0x0000, 0x8000, 0x08009], [0x0000, 0x0000, 0x8000, 0x000a],
             [0x0000, 0x0000, 0x8000, 0x808b], [0x8000, 0x0000, 0x0000, 0x008b], [0x8000, 0x0000, 0x0000, 0x08089], [0x8000, 0x0000, 0x0000, 0x8003],
             [0x8000, 0x0000, 0x0000, 0x8002], [0x8000, 0x0000, 0x0000, 0x0080], [0x0000, 0x0000, 0x0000, 0x0800a], [0x8000, 0x0000, 0x8000, 0x000a],
-            [0x8000, 0x0000, 0x8000, 0x8081], [0x8000, 0x0000, 0x0000, 0x8080], [0x0000, 0x0000, 0x8000, 0x00001], [0x8000, 0x0000, 0x8000, 0x8008]
+            [0x8000, 0x0000, 0x8000, 0x8081], [0x8000, 0x0000, 0x0000, 0x8080], [0x0000, 0x0000, 0x8000, 0x00001], [0x8000, 0x0000, 0x8000, 0x8008],
         ];
-        $bc           = [];
-        for ($round = 0; $round < $rounds; $round++)
-        {
+        $bc = [];
+        for ($round = 0; $round < $rounds; $round++) {
             // Theta
-            for ($i = 0; $i < 5; $i++)
-            {
+            for ($i = 0; $i < 5; $i++) {
                 $bc[$i] = [
                     $st[$i][0] ^ $st[$i + 5][0] ^ $st[$i + 10][0] ^ $st[$i + 15][0] ^ $st[$i + 20][0],
                     $st[$i][1] ^ $st[$i + 5][1] ^ $st[$i + 10][1] ^ $st[$i + 15][1] ^ $st[$i + 20][1],
                     $st[$i][2] ^ $st[$i + 5][2] ^ $st[$i + 10][2] ^ $st[$i + 15][2] ^ $st[$i + 20][2],
-                    $st[$i][3] ^ $st[$i + 5][3] ^ $st[$i + 10][3] ^ $st[$i + 15][3] ^ $st[$i + 20][3]
+                    $st[$i][3] ^ $st[$i + 5][3] ^ $st[$i + 10][3] ^ $st[$i + 15][3] ^ $st[$i + 20][3],
                 ];
             }
-            for ($i = 0; $i < 5; $i++)
-            {
+            for ($i = 0; $i < 5; $i++) {
                 $t = [
                     $bc[($i + 4) % 5][0] ^ ((($bc[($i + 1) % 5][0] << 1) | ($bc[($i + 1) % 5][1] >> 15)) & (0xFFFF)),
                     $bc[($i + 4) % 5][1] ^ ((($bc[($i + 1) % 5][1] << 1) | ($bc[($i + 1) % 5][2] >> 15)) & (0xFFFF)),
                     $bc[($i + 4) % 5][2] ^ ((($bc[($i + 1) % 5][2] << 1) | ($bc[($i + 1) % 5][3] >> 15)) & (0xFFFF)),
-                    $bc[($i + 4) % 5][3] ^ ((($bc[($i + 1) % 5][3] << 1) | ($bc[($i + 1) % 5][0] >> 15)) & (0xFFFF))
+                    $bc[($i + 4) % 5][3] ^ ((($bc[($i + 1) % 5][3] << 1) | ($bc[($i + 1) % 5][0] >> 15)) & (0xFFFF)),
                 ];
-                for ($j = 0; $j < 25; $j += 5)
-                {
+                for ($j = 0; $j < 25; $j += 5) {
                     $st[$j + $i] = [
                         $st[$j + $i][0] ^ $t[0],
                         $st[$j + $i][1] ^ $t[1],
                         $st[$j + $i][2] ^ $t[2],
-                        $st[$j + $i][3] ^ $t[3]
+                        $st[$j + $i][3] ^ $t[3],
                     ];
                 }
             }
             // Rho Pi
             $t = $st[1];
-            for ($i = 0; $i < 24; $i++)
-            {
-                $j      = self::$keccakf_piln[$i];
-                $bc[0]  = $st[$j];
-                $n      = self::$keccakf_rotc[$i] >> 4;
-                $m      = self::$keccakf_rotc[$i] % 16;
+            for ($i = 0; $i < 24; $i++) {
+                $j = self::$keccakf_piln[$i];
+                $bc[0] = $st[$j];
+                $n = self::$keccakf_rotc[$i] >> 4;
+                $m = self::$keccakf_rotc[$i] % 16;
                 $st[$j] = [
                     ((($t[(0 + $n) % 4] << $m) | ($t[(1 + $n) % 4] >> (16 - $m))) & (0xFFFF)),
                     ((($t[(1 + $n) % 4] << $m) | ($t[(2 + $n) % 4] >> (16 - $m))) & (0xFFFF)),
                     ((($t[(2 + $n) % 4] << $m) | ($t[(3 + $n) % 4] >> (16 - $m))) & (0xFFFF)),
-                    ((($t[(3 + $n) % 4] << $m) | ($t[(0 + $n) % 4] >> (16 - $m))) & (0xFFFF))
+                    ((($t[(3 + $n) % 4] << $m) | ($t[(0 + $n) % 4] >> (16 - $m))) & (0xFFFF)),
                 ];
-                $t      = $bc[0];
+                $t = $bc[0];
             }
             //  Chi
-            for ($j = 0; $j < 25; $j += 5)
-            {
-                for ($i = 0; $i < 5; $i++)
-                {
+            for ($j = 0; $j < 25; $j += 5) {
+                for ($i = 0; $i < 5; $i++) {
                     $bc[$i] = $st[$j + $i];
                 }
-                for ($i = 0; $i < 5; $i++)
-                {
+                for ($i = 0; $i < 5; $i++) {
                     $st[$j + $i] = [
                         $st[$j + $i][0] ^ ~$bc[($i + 1) % 5][0] & $bc[($i + 2) % 5][0],
                         $st[$j + $i][1] ^ ~$bc[($i + 1) % 5][1] & $bc[($i + 2) % 5][1],
                         $st[$j + $i][2] ^ ~$bc[($i + 1) % 5][2] & $bc[($i + 2) % 5][2],
-                        $st[$j + $i][3] ^ ~$bc[($i + 1) % 5][3] & $bc[($i + 2) % 5][3]
+                        $st[$j + $i][3] ^ ~$bc[($i + 1) % 5][3] & $bc[($i + 2) % 5][3],
                     ];
                 }
             }
@@ -212,7 +190,7 @@ final class Sha3
                 $st[0][0] ^ $keccakf_rndc[$round][0],
                 $st[0][1] ^ $keccakf_rndc[$round][1],
                 $st[0][2] ^ $keccakf_rndc[$round][2],
-                $st[0][3] ^ $keccakf_rndc[$round][3]
+                $st[0][3] ^ $keccakf_rndc[$round][3],
             ];
         }
     }
@@ -220,46 +198,41 @@ final class Sha3
     private static function keccak32($in_raw, $capacity, $outputlength, $suffix, $raw_output)
     {
         $capacity /= 8;
-        $inlen    = self::ourStrlen($in_raw);
-        $rsiz     = 200 - 2 * $capacity;
-        $rsizw    = $rsiz / 8;
-        $st       = [];
-        for ($i = 0; $i < 25; $i++)
-        {
+        $inlen = self::ourStrlen($in_raw);
+        $rsiz = 200 - 2 * $capacity;
+        $rsizw = $rsiz / 8;
+        $st = [];
+        for ($i = 0; $i < 25; $i++) {
             $st[] = [0, 0, 0, 0];
         }
-        for ($in_t = 0; $inlen >= $rsiz; $inlen -= $rsiz, $in_t += $rsiz)
-        {
-            for ($i = 0; $i < $rsizw; $i++)
-            {
-                $t      = unpack('v*', self::ourSubstr($in_raw, $i * 8 + $in_t, 8));
+        for ($in_t = 0; $inlen >= $rsiz; $inlen -= $rsiz, $in_t += $rsiz) {
+            for ($i = 0; $i < $rsizw; $i++) {
+                $t = unpack('v*', self::ourSubstr($in_raw, $i * 8 + $in_t, 8));
                 $st[$i] = [
                     $st[$i][0] ^ $t[4],
                     $st[$i][1] ^ $t[3],
                     $st[$i][2] ^ $t[2],
-                    $st[$i][3] ^ $t[1]
+                    $st[$i][3] ^ $t[1],
                 ];
             }
             self::keccakf32($st, self::KECCAK_ROUNDS);
         }
-        $temp            = self::ourSubstr($in_raw, $in_t, $inlen);
-        $temp            = str_pad($temp, $rsiz, "\x0", STR_PAD_RIGHT);
-        $temp[$inlen]    = chr($suffix);
+        $temp = self::ourSubstr($in_raw, $in_t, $inlen);
+        $temp = str_pad($temp, $rsiz, "\x0", STR_PAD_RIGHT);
+        $temp[$inlen] = chr($suffix);
         $temp[$rsiz - 1] = chr($temp[$rsiz - 1] | 0x80);
-        for ($i = 0; $i < $rsizw; $i++)
-        {
-            $t      = unpack('v*', self::ourSubstr($temp, $i * 8, 8));
+        for ($i = 0; $i < $rsizw; $i++) {
+            $t = unpack('v*', self::ourSubstr($temp, $i * 8, 8));
             $st[$i] = [
                 $st[$i][0] ^ $t[4],
                 $st[$i][1] ^ $t[3],
                 $st[$i][2] ^ $t[2],
-                $st[$i][3] ^ $t[1]
+                $st[$i][3] ^ $t[1],
             ];
         }
         self::keccakf32($st, self::KECCAK_ROUNDS);
         $out = '';
-        for ($i = 0; $i < 25; $i++)
-        {
+        for ($i = 0; $i < 25; $i++) {
             $out .= $t = pack('v*', $st[$i][3], $st[$i][2], $st[$i][1], $st[$i][0]);
         }
         $r = self::ourSubstr($out, 0, $outputlength / 8);
@@ -272,24 +245,20 @@ final class Sha3
 
     private static function selfTest()
     {
-        if (self::$test_state === 1 || self::$test_state === 2)
-        {
+        if (self::$test_state === 1 || self::$test_state === 2) {
             return;
         }
-        if (self::$test_state === 3)
-        {
+        if (self::$test_state === 3) {
             throw new \Exception('Sha3 previous self test failed!');
         }
         $in = '';
         $md = '6b4e03423667dbb73b6e15454f0eb1abd4597f9a1b078e3f5b5a6bc7';
-        if (self::keccak64($in, 224, 224, 0x06, false) === $md)
-        {
+        if (self::keccak64($in, 224, 224, 0x06, false) === $md) {
             self::$test_state = 1;
 
             return;
         }
-        if (self::keccak32($in, 224, 224, 0x06, false) === $md)
-        {
+        if (self::keccak32($in, 224, 224, 0x06, false) === $md) {
             self::$test_state = 2;
 
             return;
@@ -301,8 +270,7 @@ final class Sha3
     private static function keccak($in_raw, $capacity, $outputlength, $suffix, $raw_output)
     {
         self::selfTest();
-        if (self::$test_state === 1)
-        {
+        if (self::$test_state === 1) {
             return self::keccak64($in_raw, $capacity, $outputlength, $suffix, $raw_output);
         }
 
@@ -311,8 +279,7 @@ final class Sha3
 
     public static function hash($in, $mdlen, $raw_output = false)
     {
-        if (!in_array($mdlen, [224, 256, 384, 512], true))
-        {
+        if (!in_array($mdlen, [224, 256, 384, 512], true)) {
             throw new \Exception('Unsupported Sha3 Hash output size.');
         }
 
@@ -321,8 +288,7 @@ final class Sha3
 
     public static function shake($in, $security_level, $outlen, $raw_output = false)
     {
-        if (!in_array($security_level, [128, 256], true))
-        {
+        if (!in_array($security_level, [128, 256], true)) {
             throw new \Exception('Unsupported Sha3 Shake security level.');
         }
 
@@ -341,16 +307,13 @@ final class Sha3
     {
         // Premature optimization: cache the function_exists() result
         static $exists = null;
-        if ($exists === null)
-        {
+        if ($exists === null) {
             $exists = \function_exists('\\mb_strlen');
         }
         // If it exists, we need to make sure we're using 8bit mode
-        if ($exists)
-        {
+        if ($exists) {
             $length = \mb_strlen($str, '8bit');
-            if ($length === false)
-            {
+            if ($length === false) {
                 throw new \Exception('mb_strlen() failed.');
             }
 
@@ -372,17 +335,13 @@ final class Sha3
     {
         // Premature optimization: cache the function_exists() result
         static $exists = null;
-        if ($exists === null)
-        {
+        if ($exists === null) {
             $exists = \function_exists('\\mb_substr');
         }
         // If it exists, we need to make sure we're using 8bit mode
-        if ($exists)
-        {
+        if ($exists) {
             return \mb_substr($str, $start, $length, '8bit');
-        }
-        elseif ($length !== null)
-        {
+        } elseif ($length !== null) {
             return \substr($str, $start, $length);
         }
 

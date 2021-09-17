@@ -8,7 +8,6 @@ use Merkeleon\PhpCryptocurrencyAddressValidation\Utils\Bech32Exception;
 
 class LTC extends Base58Validation
 {
-
     const DEPRECATED_ADDRESS_VERSIONS = ['31'];
 
     protected $deprecatedAllowed = false;
@@ -16,25 +15,31 @@ class LTC extends Base58Validation
     protected $base58PrefixToHexVersion = [
         'L' => '30',
         'M' => '32',
-        '3' => '05'
+        '3' => '05',
     ];
 
-    public function validate($address)
+    protected $network_version_map = [
+        '30' => self::MAINNET,
+        '32' => self::MAINNET,
+        '05' => self::MAINNET,
+    ];
+
+    public function validate(string $address, array $options = []): bool
     {
-        $address = (string)$address;
         $valid = parent::validate($address);
 
         if (!$valid) {
             // maybe it's a bech32 address
             try {
-                $valid = is_array($decoded = Bech32Decoder::decodeRaw($address)) && 'ltc' === $decoded[0];
-            } catch (Bech32Exception $exception) {}
+                $valid = is_array($decoded = Bech32Decoder::decodeRaw($address)) && $decoded[0] === 'ltc';
+            } catch (Bech32Exception $exception) {
+            }
         }
 
         return $valid;
     }
 
-    protected function validateVersion($version)
+    protected function validateVersion(string $version, array $options = []): bool
     {
         if (!$this->deprecatedAllowed && in_array($this->addressVersion, self::DEPRECATED_ADDRESS_VERSIONS)) {
             return false;
@@ -45,17 +50,16 @@ class LTC extends Base58Validation
     /**
      * @return boolean
      */
-    public function isDeprecatedAllowed()
+    public function isDeprecatedAllowed(): bool
     {
         return $this->deprecatedAllowed;
     }
 
     /**
-     * @param boolean $deprecatedAllowed
+     * @param bool $deprecatedAllowed
      */
-    public function setDeprecatedAllowed($deprecatedAllowed)
+    public function setDeprecatedAllowed(bool $deprecatedAllowed)
     {
         $this->deprecatedAllowed = $deprecatedAllowed;
     }
-
 }

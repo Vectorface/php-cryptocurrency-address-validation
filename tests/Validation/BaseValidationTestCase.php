@@ -1,21 +1,19 @@
 <?php
 
-
 namespace Tests\Validation;
-
 
 use Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
 use Tests\TestCase;
 
 abstract class BaseValidationTestCase extends TestCase
 {
-    public abstract function getValidationInstance() : Validation;
-    public abstract function addressProvider();
+    abstract public function getValidationInstance() : Validation;
+    abstract public function addressProvider();
 
     /** @dataProvider addressProvider */
-    public function testValidate($address, $isValid) {
-
+    public function testValidate($address, $options, $isValid)
+    {
         $validator = $this->getValidationInstance();
-        $this->assertEquals($isValid, $validator->validate($address));
+        $this->assertEquals($isValid, $validator->validate($address, $options));
     }
 }
