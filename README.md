@@ -8,7 +8,7 @@ One day I will add other crypto currencies. Or how about you? :)
 ## Usage
 
 ```php
-use jlcooke\PhpCryptocurrencyAddressValidation\Validation;
+use Vectorface\PhpCryptocurrencyAddressValidation\Validation;
 
 $validator = Validation::make('BTC');
 var_dump([
@@ -19,4 +19,5 @@ var_dump([
   'options NET garbage (assumes Mainnet)' => $validator->validate('1QLbGuc3WGKKKpLs4pBp9H6jiQ2MgPkXRp', [ Validation::OPT_NET => 'blah' ]),
   'options garbage (assumes Mainnet)' => $validator->validate('1QLbGuc3WGKKKpLs4pBp9H6jiQ2MgPkXRp', [ 'hammer' => 'nail' ]),
 ]);
+
 ```

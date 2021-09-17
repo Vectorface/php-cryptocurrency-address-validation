@@ -2,8 +2,8 @@
 
 namespace Tests\Validation;
 
-use jlcooke\PhpCryptocurrencyAddressValidation\Validation;
 use Tests\TestCase;
+use Vectorface\PhpCryptocurrencyAddressValidation\Validation;
 
 abstract class BaseValidationTestCase extends TestCase
 {

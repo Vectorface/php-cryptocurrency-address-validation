@@ -2,7 +2,7 @@
 
 namespace Tests\Validation;
 
-use jlcooke\PhpCryptocurrencyAddressValidation\Validation;
+use Vectorface\PhpCryptocurrencyAddressValidation\Validation;
 
 class TRXTest extends BaseValidationTestCase
 {

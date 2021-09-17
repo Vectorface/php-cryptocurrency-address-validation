@@ -1,8 +1,8 @@
 <?php
 
-namespace jlcooke\PhpCryptocurrencyAddressValidation;
+namespace Vectorface\PhpCryptocurrencyAddressValidation;
 
-use jlcooke\PhpCryptocurrencyAddressValidation\Exception\CryptocurrencyValidatorNotFound;
+use Vectorface\PhpCryptocurrencyAddressValidation\Exception\CryptocurrencyValidatorNotFound;
 
 abstract class Validation
 {

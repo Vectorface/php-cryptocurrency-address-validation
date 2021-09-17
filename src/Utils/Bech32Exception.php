@@ -1,6 +1,6 @@
 <?php
 
-namespace jlcooke\PhpCryptocurrencyAddressValidation\Utils;
+namespace Vectorface\PhpCryptocurrencyAddressValidation\Utils;
 
 class Bech32Exception extends \Exception
 {

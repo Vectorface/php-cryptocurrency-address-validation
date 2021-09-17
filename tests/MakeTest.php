@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use jlcooke\PhpCryptocurrencyAddressValidation\Validation;
+use Vectorface\PhpCryptocurrencyAddressValidation\Validation;
 
 class MakeTest extends TestCase
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace jlcooke\PhpCryptocurrencyAddressValidation\Validation;
+namespace Vectorface\PhpCryptocurrencyAddressValidation\Validation;
 
-use jlcooke\PhpCryptocurrencyAddressValidation\Base58Validation;
-use jlcooke\PhpCryptocurrencyAddressValidation\Utils\Bech32Decoder;
-use jlcooke\PhpCryptocurrencyAddressValidation\Utils\Bech32Exception;
+use Vectorface\PhpCryptocurrencyAddressValidation\Base58Validation;
+use Vectorface\PhpCryptocurrencyAddressValidation\Utils\Bech32Decoder;
+use Vectorface\PhpCryptocurrencyAddressValidation\Utils\Bech32Exception;
 
 class TBTC extends Base58Validation
 {

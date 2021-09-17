@@ -1,6 +1,6 @@
 <?php
 
-namespace jlcooke\PhpCryptocurrencyAddressValidation\Exception;
+namespace Vectorface\PhpCryptocurrencyAddressValidation\Exception;
 
 class CryptocurrencyValidatorNotFound extends \Exception
 {

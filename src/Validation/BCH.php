@@ -1,9 +1,9 @@
 <?php
 
-namespace jlcooke\PhpCryptocurrencyAddressValidation\Validation;
+namespace Vectorface\PhpCryptocurrencyAddressValidation\Validation;
 
-use jlcooke\PhpCryptocurrencyAddressValidation\Base58Validation;
-use jlcooke\PhpCryptocurrencyAddressValidation\Utils\CashAddress;
+use Vectorface\PhpCryptocurrencyAddressValidation\Base58Validation;
+use Vectorface\PhpCryptocurrencyAddressValidation\Utils\CashAddress;
 
 class BCH extends Base58Validation
 {

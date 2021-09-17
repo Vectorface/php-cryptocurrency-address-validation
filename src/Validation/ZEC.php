@@ -1,8 +1,8 @@
 <?php
 
-namespace jlcooke\PhpCryptocurrencyAddressValidation\Validation;
+namespace Vectorface\PhpCryptocurrencyAddressValidation\Validation;
 
-use jlcooke\PhpCryptocurrencyAddressValidation\Base58Validation;
+use Vectorface\PhpCryptocurrencyAddressValidation\Base58Validation;
 
 class ZEC extends Base58Validation
 {

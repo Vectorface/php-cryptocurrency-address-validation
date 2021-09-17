@@ -1,6 +1,6 @@
 <?php
 
-namespace jlcooke\PhpCryptocurrencyAddressValidation\Utils;
+namespace Vectorface\PhpCryptocurrencyAddressValidation\Utils;
 
 /**
  * @see https://github.com/Bit-Wasp/bech32/blob/master/src/bech32.php

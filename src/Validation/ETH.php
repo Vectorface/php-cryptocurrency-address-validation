@@ -1,9 +1,9 @@
 <?php
 
-namespace jlcooke\PhpCryptocurrencyAddressValidation\Validation;
+namespace Vectorface\PhpCryptocurrencyAddressValidation\Validation;
 
-use jlcooke\PhpCryptocurrencyAddressValidation\Utils\Sha3;
-use jlcooke\PhpCryptocurrencyAddressValidation\Validation;
+use Vectorface\PhpCryptocurrencyAddressValidation\Utils\Sha3;
+use Vectorface\PhpCryptocurrencyAddressValidation\Validation;
 
 class ETH extends Validation
 {

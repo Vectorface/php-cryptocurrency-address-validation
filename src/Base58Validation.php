@@ -1,6 +1,6 @@
 <?php
 
-namespace jlcooke\PhpCryptocurrencyAddressValidation;
+namespace Vectorface\PhpCryptocurrencyAddressValidation;
 
 class Base58Validation extends Validation
 {

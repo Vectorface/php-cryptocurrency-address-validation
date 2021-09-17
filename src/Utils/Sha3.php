@@ -1,6 +1,6 @@
 <?php
 
-namespace jlcooke\PhpCryptocurrencyAddressValidation\Utils;
+namespace Vectorface\PhpCryptocurrencyAddressValidation\Utils;
 
 final class Sha3
 {

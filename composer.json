@@ -1,10 +1,10 @@
 {
-    "name": "Vectorface/php-cryptocurrency-address-validation",
+    "name": "vectorface/php-cryptocurrency-address-validation",
     "description": "Cryptocurrency address validation. Currently supports 16 coins including litecoin and bitcoin.",
     "authors": [
         {
             "name": "Jean-Luc Cooke",
-            "email": "jlcooke@vectorface.com"
+            "email": "jlcooke@gmail.com"
         },
         {
             "name": "Andrey Murashkin",

@@ -6,7 +6,7 @@
  * Time: 15:08
  */
 
-namespace jlcooke\PhpCryptocurrencyAddressValidation\Utils;
+namespace Vectorface\PhpCryptocurrencyAddressValidation\Utils;
 
 class CashAddressException extends \Exception
 {
