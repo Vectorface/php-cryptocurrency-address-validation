@@ -3,7 +3,8 @@
     "description": "Cryptocurrency address validation. Currently supports 16 coins including litecoin and bitcoin.",
     "authors": [
         {
-            "name": "Jean-Luc Cooke"
+            "name": "Jean-Luc Cooke",
+            "email": "jlcooke@vectorface.com"
         },
         {
             "name": "Andrey Murashkin",
