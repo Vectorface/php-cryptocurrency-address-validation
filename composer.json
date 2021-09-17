@@ -1,5 +1,5 @@
 {
-    "name": "jlcooke/php-cryptocurrency-address-validation",
+    "name": "Vectorface/php-cryptocurrency-address-validation",
     "description": "Cryptocurrency address validation. Currently supports 16 coins including litecoin and bitcoin.",
     "authors": [
         {
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "jlcooke\\PhpCryptocurrencyAddressValidation\\": "src"
+            "Vectorface\\PhpCryptocurrencyAddressValidation\\": "src"
         }
     },
     "autoload-dev": {
