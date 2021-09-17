@@ -3,6 +3,8 @@
 Easy to use PHP Bitcoin and Litecoin address validator.
 One day I will add other crypto currencies. Or how about you? :)
 
+2021-09-17 - needed more features like TestNet vs MainNet filters on validation.
+
 ## Usage
 
 
