@@ -1,8 +1,8 @@
 <?php
 
-namespace Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
+namespace jlcooke\PhpCryptocurrencyAddressValidation\Validation;
 
-use Merkeleon\PhpCryptocurrencyAddressValidation\Base58Validation;
+use jlcooke\PhpCryptocurrencyAddressValidation\Base58Validation;
 
 class DOGE extends Base58Validation
 {

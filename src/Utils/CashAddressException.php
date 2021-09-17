@@ -6,7 +6,7 @@
  * Time: 15:08
  */
 
-namespace Merkeleon\PhpCryptocurrencyAddressValidation\Utils;
+namespace jlcooke\PhpCryptocurrencyAddressValidation\Utils;
 
 class CashAddressException extends \Exception
 {

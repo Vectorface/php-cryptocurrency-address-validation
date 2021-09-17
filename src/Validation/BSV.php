@@ -1,6 +1,6 @@
 <?php
 
-namespace Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
+namespace jlcooke\PhpCryptocurrencyAddressValidation\Validation;
 
 class BSV extends BCH
 {

@@ -2,7 +2,7 @@
 
 namespace Tests\Validation;
 
-use Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
+use jlcooke\PhpCryptocurrencyAddressValidation\Validation;
 use Tests\TestCase;
 
 abstract class BaseValidationTestCase extends TestCase

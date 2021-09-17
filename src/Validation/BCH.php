@@ -1,9 +1,9 @@
 <?php
 
-namespace Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
+namespace jlcooke\PhpCryptocurrencyAddressValidation\Validation;
 
-use Merkeleon\PhpCryptocurrencyAddressValidation\Base58Validation;
-use Merkeleon\PhpCryptocurrencyAddressValidation\Utils\CashAddress;
+use jlcooke\PhpCryptocurrencyAddressValidation\Base58Validation;
+use jlcooke\PhpCryptocurrencyAddressValidation\Utils\CashAddress;
 
 class BCH extends Base58Validation
 {

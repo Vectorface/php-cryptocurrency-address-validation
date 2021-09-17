@@ -1,10 +1,10 @@
 <?php
 
-namespace Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
+namespace jlcooke\PhpCryptocurrencyAddressValidation\Validation;
 
-use Merkeleon\PhpCryptocurrencyAddressValidation\Utils\Bech32Decoder;
-use Merkeleon\PhpCryptocurrencyAddressValidation\Utils\Bech32Exception;
-use Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
+use jlcooke\PhpCryptocurrencyAddressValidation\Utils\Bech32Decoder;
+use jlcooke\PhpCryptocurrencyAddressValidation\Utils\Bech32Exception;
+use jlcooke\PhpCryptocurrencyAddressValidation\Validation;
 
 class BNB extends Validation
 {

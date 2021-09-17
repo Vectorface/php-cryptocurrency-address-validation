@@ -1,6 +1,6 @@
 <?php
 
-namespace Merkeleon\PhpCryptocurrencyAddressValidation\Exception;
+namespace jlcooke\PhpCryptocurrencyAddressValidation\Exception;
 
 class CryptocurrencyValidatorNotFound extends \Exception
 {

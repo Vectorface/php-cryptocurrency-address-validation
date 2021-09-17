@@ -7,11 +7,16 @@ One day I will add other crypto currencies. Or how about you? :)
 
 ## Usage
 
-
 ```php
-use Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
+use jlcooke\PhpCryptocurrencyAddressValidation\Validation;
 
 $validator = Validation::make('BTC');
-var_dump($validator->validate('1QLbGuc3WGKKKpLs4pBp9H6jiQ2MgPkXRp'));
-
+var_dump([
+  'classic' => $validator->validate('1QLbGuc3WGKKKpLs4pBp9H6jiQ2MgPkXRp'),
+  'options empty (assumes Mainnet)' => $validator->validate('1QLbGuc3WGKKKpLs4pBp9H6jiQ2MgPkXRp', []),
+  'options NET MAIN' => $validator->validate('1QLbGuc3WGKKKpLs4pBp9H6jiQ2MgPkXRp', [ Validation::OPT_NET => Validation::MAINNET ]),
+  'options NET TEST' => $validator->validate('1QLbGuc3WGKKKpLs4pBp9H6jiQ2MgPkXRp', [ Validation::OPT_NET => Validation::TESTNET ]),
+  'options NET garbage (assumes Mainnet)' => $validator->validate('1QLbGuc3WGKKKpLs4pBp9H6jiQ2MgPkXRp', [ Validation::OPT_NET => 'blah' ]),
+  'options garbage (assumes Mainnet)' => $validator->validate('1QLbGuc3WGKKKpLs4pBp9H6jiQ2MgPkXRp', [ 'hammer' => 'nail' ]),
+]);
 ```

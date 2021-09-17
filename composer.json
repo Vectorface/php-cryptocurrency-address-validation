@@ -1,7 +1,10 @@
 {
-    "name": "merkeleon/php-cryptocurrency-address-validation",
-    "description": "Cryptocurrency address validation. Currently supports litecoin and bitcoin.",
+    "name": "jlcooke/php-cryptocurrency-address-validation",
+    "description": "Cryptocurrency address validation. Currently supports 16 coins including litecoin and bitcoin.",
     "authors": [
+        {
+            "name": "Jean-Luc Cooke"
+        },
         {
             "name": "Andrey Murashkin",
             "email": "andrey@phpteam.pro"
@@ -15,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Merkeleon\\PhpCryptocurrencyAddressValidation\\": "src"
+            "jlcooke\\PhpCryptocurrencyAddressValidation\\": "src"
         }
     },
     "autoload-dev": {

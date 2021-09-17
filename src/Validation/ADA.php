@@ -1,14 +1,14 @@
 <?php
 
-namespace Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
+namespace jlcooke\PhpCryptocurrencyAddressValidation\Validation;
 
 use CBOR\Decoder;
 use CBOR\OtherObject;
 use CBOR\StringStream;
 use CBOR\Tag;
-use Merkeleon\PhpCryptocurrencyAddressValidation\Base58Validation;
-use Merkeleon\PhpCryptocurrencyAddressValidation\Utils\Bech32Decoder;
-use Merkeleon\PhpCryptocurrencyAddressValidation\Utils\Bech32Exception;
+use jlcooke\PhpCryptocurrencyAddressValidation\Base58Validation;
+use jlcooke\PhpCryptocurrencyAddressValidation\Utils\Bech32Decoder;
+use jlcooke\PhpCryptocurrencyAddressValidation\Utils\Bech32Exception;
 
 class ADA extends Base58Validation
 {

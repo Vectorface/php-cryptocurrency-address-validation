@@ -2,7 +2,7 @@
 
 namespace Tests\Validation;
 
-use Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
+use jlcooke\PhpCryptocurrencyAddressValidation\Validation;
 
 class ETCTest extends BaseValidationTestCase
 {

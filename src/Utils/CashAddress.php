@@ -6,7 +6,7 @@
  * Time: 15:07
  */
 
-namespace Merkeleon\PhpCryptocurrencyAddressValidation\Utils;
+namespace jlcooke\PhpCryptocurrencyAddressValidation\Utils;
 
 class CashAddress
 {

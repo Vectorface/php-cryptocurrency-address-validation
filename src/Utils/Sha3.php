@@ -1,6 +1,6 @@
 <?php
 
-namespace Merkeleon\PhpCryptocurrencyAddressValidation\Utils;
+namespace jlcooke\PhpCryptocurrencyAddressValidation\Utils;
 
 final class Sha3
 {

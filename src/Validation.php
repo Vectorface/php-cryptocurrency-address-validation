@@ -1,8 +1,8 @@
 <?php
 
-namespace Merkeleon\PhpCryptocurrencyAddressValidation;
+namespace jlcooke\PhpCryptocurrencyAddressValidation;
 
-use Merkeleon\PhpCryptocurrencyAddressValidation\Exception\CryptocurrencyValidatorNotFound;
+use jlcooke\PhpCryptocurrencyAddressValidation\Exception\CryptocurrencyValidatorNotFound;
 
 abstract class Validation
 {

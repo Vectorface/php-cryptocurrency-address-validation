@@ -2,7 +2,7 @@
 
 namespace Tests\Validation;
 
-use Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
+use jlcooke\PhpCryptocurrencyAddressValidation\Validation;
 
 class TBTCTest extends BaseValidationTestCase
 {

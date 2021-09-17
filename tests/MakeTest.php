@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Merkeleon\PhpCryptocurrencyAddressValidation\Validation;
+use jlcooke\PhpCryptocurrencyAddressValidation\Validation;
 
 class MakeTest extends TestCase
 {
@@ -17,19 +17,19 @@ class MakeTest extends TestCase
     public function makeProvider()
     {
         return [
-            ['BCH', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\BCH'],
-            ['BNB', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\BNB'],
-            ['BSV', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\BSV'],
-            ['BTC', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\BTC'],
-            ['DASH', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\DASH'],
-            ['DOGE', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\DOGE'],
-            ['ETC', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\ETC'],
-            ['ETH', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\ETH'],
-            ['LTC', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\LTC'],
-            ['NEO', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\NEO'],
-            ['TBTC', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\TBTC'],
-            ['XRP', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\XRP'],
-            ['ZEC', 'Merkeleon\PhpCryptocurrencyAddressValidation\Validation\ZEC'],
+            ['BCH', Validation\BCH::class],
+            ['BNB', Validation\BNB::class],
+            ['BSV', Validation\BSV::class],
+            ['BTC', Validation\BTC::class],
+            ['DASH', Validation\DASH::class],
+            ['DOGE', Validation\DOGE::class],
+            ['ETC', Validation\ETC::class],
+            ['ETH', Validation\ETH::class],
+            ['LTC', Validation\LTC::class],
+            ['NEO', Validation\NEO::class],
+            ['TBTC', Validation\TBTC::class],
+            ['XRP', Validation\XRP::class],
+            ['ZEC', Validation\ZEC::class],
         ];
     }
 }
