@@ -16,12 +16,18 @@ class LTC extends Base58Validation
         'L' => '30',
         'M' => '32',
         '3' => '05',
+        'm' => '6F',
+        '2' => 'C4',
+        'Q' => '3A',
     ];
 
     protected $network_version_map = [
         '30' => self::MAINNET,
         '32' => self::MAINNET,
         '05' => self::MAINNET,
+        '6F' => self::TESTNET,
+        'C4' => self::TESTNET,
+        '3A' => self::TESTNET,
     ];
 
     public function validate(string $address, array $options = []): bool
